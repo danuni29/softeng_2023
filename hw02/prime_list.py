@@ -1,4 +1,4 @@
-from lec01.prime import is_prime
+from week01.prime import is_prime
 def main():
 
 
