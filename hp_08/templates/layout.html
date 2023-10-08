@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<head/>
+
+    <!DOCTYPE html>
+    <title>다은이의 홈페이지</title>
+    <link href="{{url_for('static', filename='my_homepage.css')}}"
+          rel="stylesheet"
+          type="text/css">
+
+
+<body>
+    <nav>
+        <a href="./">Home</a>
+        <a href="{{url_for('about_me_func')}}">About Me</a>
+        <a href="{{url_for('blog_list_func')}}">Blog</a>
+
+    </nav>
+
+    {% block content %}{% endblock %}
+</body>
+
+</html>
