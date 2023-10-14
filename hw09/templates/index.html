@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <h1>Welcome!</h1>
+    <h2>Da Eun's Homepage</h2>
+
+
+    <hr />
+    <script src="{{ url_for('static', filename='what_your_name.js') }}"></script>
+
+    <center><label for="inputA">이름을 알려주세요</label><br>
+    <input id="inputA" value="Someone" onkeyup="doSomething()"></center>
+
+    <p><span id="valueA">Someone </span>님 반갑습니다! &#128150;</p>
+
+
+{% endblock %}
+
