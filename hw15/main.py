@@ -23,12 +23,11 @@ def menucrawling_func():
             menu = restaurant.find_next('tbody')
             if menu:
                 for row in menu.find_all('tr'):
-                    # 조식인 경우 건너뛰기
+                    # 조식&도시락인 경우 건너뛰기
                     if '조식' in row.text:
                         continue
                     if '도시락' in row.text:
                         continue
-                    # 각 행의 정보를 출력
                     menu_items = [td.text.strip() for td in row.find_all('td')]
                     all_menu_items.append(menu_items)
 
@@ -51,7 +50,6 @@ def menucrawling_func():
             if isinstance(menu_item, list):
                 cleaned_menu_items.extend(menu_item)
             else:
-                # '/'로 구분된 문자열을 나누어 개별 아이템으로 만듦
                 sub_items = [item.strip() for item in menu_item.split('/')]
                 cleaned_menu_items.extend(sub_items)
 
@@ -62,14 +60,13 @@ def menucrawling_func():
 
 @app.get("/menu/{day}")
 def read_item(day: str):
-    # /menu/{day} 경로에 접근했을 때 menucrawling_func에 저장된 결과를 사용하여 해당 요일의 메뉴를 반환
     menu_by_day_result = menucrawling_func()
 
     # day 파라미터에 해당하는 요일이 있는지 확인하고 해당 메뉴를 반환
     menu = menu_by_day_result.get(day, [])
 
     if not menu:
-        raise HTTPException(status_code=404, detail="Menu not found for the specified day")
+        raise HTTPException(status_code=404, detail="NO MENU")
 
     return JSONResponse(content=menu, media_type="application/json", status_code=200)
 
